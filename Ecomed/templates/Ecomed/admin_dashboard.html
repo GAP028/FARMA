@@ -1,0 +1,132 @@
+{% extends 'Ecomed/base.html' %}
+{% load static %}
+
+{% block stylesheets %}
+    <link rel="stylesheet" href="{% static 'ecomed_admin_dashboard.css' %}">
+{% endblock %}
+
+{% block content %}
+<!-- Logo with link to home -->
+<a href="{% url 'home' %}" class="logo">
+    <img src="{% static 'images/logo.png' %}" alt="Logo">
+</a>
+
+<div class="container">
+    <h1 class="dashboard-title">Tableau de bord Admin</h1>
+
+    <div class="actions">
+        <a href="{% url 'add_user' %}" class="btn btn-primary">➕ Ajouter un utilisateur</a>
+        <a href="{% url 'site_settings' %}" class="btn btn-secondary">⚙️ Paramètres du Site</a>
+    </div>
+
+    <h2 class="section-title">👥 Liste des utilisateurs</h2>
+    <table class="table table-bordered">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Nom d'utilisateur</th>
+                <th>Email</th>
+                <th>Rôles</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for user in users %}
+                <tr>
+                    <td>{{ user.id }}</td>
+                    <td>{{ user.username }}</td>
+                    <td>{{ user.email }}</td>
+                    <td>
+                        {% if user.is_admin %} Admin {% endif %}
+                        {% if user.is_manager %} Manager {% endif %}
+                        {% if user.is_client %} Client {% endif %}
+                    </td>
+                    <td>
+                        <a href="{% url 'user_details' user.id %}" class="btn btn-info btn-sm">👁️ Détails</a>
+                        <a href="{% url 'edit_user' user.id %}" class="btn btn-warning btn-sm">✏️ Modifier</a>
+                        <a href="{% url 'delete_user' user.id %}" class="btn btn-danger btn-sm">🗑️ Supprimer</a>
+                    </td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+    <div class="actions">
+        <a href="{% url 'add_product' %}" class="btn btn-primary">➕ Ajouter un produit</a>
+        <a href="{% url 'sales_report' %}" class="btn btn-secondary">📊 Rapport de Ventes</a>
+        <a href="{% url 'user_report' %}" class="btn btn-secondary">📋 Rapport des Utilisateurs</a>
+        <a href="{% url 'stock_report' %}" class="btn btn-secondary">📦 Rapport des Stocks</a>
+    </div>
+
+    <h2 class="section-title">🛒 Liste des produits</h2>
+    <table class="table table-bordered">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Nom du produit</th>
+                <th>Description</th>
+                <th>Prix</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for product in products %}
+                <tr>
+                    <td>{{ product.id }}</td>
+                    <td>{{ product.name }}</td>
+                    <td>{{ product.description }}</td>
+                    <td>{{ product.price }}</td>
+                    <td>
+                        <a href="{% url 'edit_product' product.id %}" class="btn btn-warning btn-sm">✏️ Modifier</a>
+                        <a href="{% url 'delete_product' product.id %}" class="btn btn-danger btn-sm">🗑️ Supprimer</a>
+                    </td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+    <h2 class="section-title">📦 Liste des commandes</h2>
+    <table class="table table-bordered">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Produit</th>
+                <th>Utilisateur</th>
+                <th>Rue</th>
+                <th>Adresse</th>
+                <th>Ville</th>
+                <th>Code Postal</th>
+                <th>Statut</th>
+                <th>Date de création</th>
+                <th>Délai de livraison</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for order in orders %}
+                <tr>
+                    <td>{{ order.id }}</td>
+                    <td>{{ order.product.name }}</td>
+                    <td>{{ order.user.username }}</td>
+                    <td>{{ order.street }}</td>
+                    <td>{{ order.address }}</td>
+                    <td>{{ order.city }}</td>
+                    <td>{{ order.postal_code }}</td>
+                    <td>{{ order.status }}</td>
+                    <td>{{ order.created_at }}</td>
+                    <td>
+                        {% if order.delivery_deadline %}
+                            {{ order.delivery_deadline|date:"Y-m-d H:i" }}
+                        {% else %}
+                            Pas défini
+                        {% endif %}
+                    </td>
+                    <td>
+                        <a href="{% url 'edit_order' order.id %}" class="btn btn-warning btn-sm">✏️ Modifier</a>
+                    </td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endblock %}

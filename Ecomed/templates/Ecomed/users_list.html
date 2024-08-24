@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Gestion de l'E-commerce</title>
+    {% load static %}
+    <link rel="stylesheet" type="text/css" href="{% static 'ecomed_users_list.css' %}">
+</head>
+<body>
+    <!-- Logo with link to home -->
+    <a href="{% url 'home' %}" class="logo">
+        <img src="{% static 'images/logo.png' %}" alt="Logo">
+    </a>
+
+    <div class="dashboard-container">
+        <h1 class="header">⚙️ Dashboard Manager</h1>
+        
+        <!-- Menu de Navigation pour les Managers -->
+        <nav>
+            <ul class="nav-list">
+                <li><a href="{% url 'orders_list' %}">📦 Gestion des Commandes</a></li>
+                <li><a href="{% url 'sales_report' %}">📊 Rapport de Ventes</a></li>
+                <li><a href="{% url 'stock_report' %}">📦 Rapport de Stocks</a></li>
+                <li><a href="{% url 'user_report' %}">👤 Rapport Utilisateurs</a></li>
+            </ul>
+        </nav>
+        
+        <div class="users-section">
+            <h2 class="users-header">👥 Liste des Utilisateurs</h2>
+            <p class="total-users">Total des utilisateurs : <strong>{{ total_users }}</strong></p>
+            <table class="user-table">
+                <thead>
+                    <tr>
+                        <th>Nom d'utilisateur</th>
+                        <th>Email</th>
+                        <th>Prénom</th>
+                        <th>Nom</th>
+                        <th>Admin</th>
+                        <th>Manager</th>
+                        <th>Client</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for user in users %}
+                        <tr>
+                            <td>{{ user.username }}</td>
+                            <td>{{ user.email }}</td>
+                            <td>{{ user.first_name }}</td>
+                            <td>{{ user.last_name }}</td>
+                            <td>{{ user.is_admin|yesno:"✔,✘" }}</td>
+                            <td>{{ user.is_manager|yesno:"✔,✘" }}</td>
+                            <td>{{ user.is_client|yesno:"✔,✘" }}</td>
+                        </tr>
+                    {% empty %}
+                        <tr>
+                            <td colspan="7">Aucun utilisateur trouvé</td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</body>
+</html>

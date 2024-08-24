@@ -1,0 +1,95 @@
+/* Styles généraux */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f8f9fa; /* Couleur de fond douce */
+    color: #212529;
+    margin: 0;
+    padding: 0;
+    position: relative; /* Nécessaire pour positionner le logo en absolu */
+}
+
+/* Conteneur principal */
+.container {
+    max-width: 1000px;
+    margin: 20px auto;
+    padding: 20px;
+    background-color: #ffffff;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+}
+
+/* Titres */
+h2 {
+    font-size: 1.5rem;
+    color: #007bff; /* Couleur bleue */
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+/* Formulaire de recherche */
+form {
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+input[type="text"] {
+    padding: 10px;
+    font-size: 1rem;
+    border: 1px solid #ced4da;
+    border-radius: 4px;
+}
+
+button {
+    padding: 10px 20px;
+    font-size: 1rem;
+    color: #ffffff;
+    background-color: #007bff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #0056b3;
+}
+
+/* Table Styles */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+
+table th, table td {
+    padding: 12px;
+    text-align: left;
+    border-bottom: 1px solid #dee2e6;
+}
+
+table thead {
+    background-color: #007bff;
+    color: #ffffff;
+}
+
+table tbody tr:nth-of-type(odd) {
+    background-color: #f2f2f2;
+}
+
+/* Logo Styles */
+.logo {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    overflow: hidden;
+    cursor: pointer;
+    z-index: 1000; /* Assure que le logo reste au-dessus du reste du contenu */
+}
+
+.logo img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Assure que l'image couvre bien le conteneur */
+}

@@ -1,0 +1,35 @@
+{% extends 'Ecomed/base.html' %}
+
+{% load static %}
+
+{% block stylesheets %}
+    <link rel="stylesheet" href="{% static 'ecomed_add_product.css' %}">
+{% endblock %}
+
+{% block content %}
+<div class="container">
+    <header>
+        <h1>📦 Ajouter un Produit</h1>
+    </header>
+    
+    <form method="post" enctype="multipart/form-data" class="product-form">
+        {% csrf_token %}
+        
+        {% for field in form %}
+            {% if field.name != 'new_category' %}
+                <div class="form-group">
+                    {{ field.label_tag }}
+                    {{ field }}
+                </div>
+            {% endif %}
+        {% endfor %}
+        
+        <div class="form-group">
+            <label for="id_new_category">Nouvelle catégorie :</label>
+            <input type="text" name="new_category" id="id_new_category">
+        </div>
+        
+        <button type="submit" class="btn btn-primary">Ajouter</button>
+    </form>
+</div>
+{% endblock %}

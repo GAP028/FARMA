@@ -1,0 +1,60 @@
+{% extends 'Ecomed/base.html' %}
+
+{% load static %}
+
+{% block content %}
+<link rel="stylesheet" type="text/css" href="{% static 'ecomed_user_report.css' %}">
+
+<div class="user-report-container">
+    <h1><i class="fas fa-users icon"></i> Rapport des Utilisateurs</h1>
+
+    <form method="get" class="filter-form">
+        <div class="form-group">
+            <label for="role"><i class="fas fa-filter icon"></i> Filtrer par rôle :</label>
+            <select name="role" id="role">
+                <option value="">Tous</option>
+                <option value="admin" {% if role_filter == 'admin' %}selected{% endif %}>Admin</option>
+                <option value="manager" {% if role_filter == 'manager' %}selected{% endif %}>Manager</option>
+                <option value="client" {% if role_filter == 'client' %}selected{% endif %}>Client</option>
+            </select>
+            <button type="submit" class="btn btn-primary"><i class="fas fa-search icon"></i> Filtrer</button>
+            <button type="submit" name="export" value="csv" class="btn btn-secondary"><i class="fas fa-file-download icon"></i> Exporter en CSV</button>
+        </div>
+    </form>
+
+    <div class="statistics">
+        <h2><i class="fas fa-chart-bar icon"></i> Statistiques</h2>
+        <p>Total des utilisateurs : <strong>{{ total_users }}</strong></p>
+        <p>Durée moyenne sur le site : <strong>{{ average_duration|floatformat:2 }}</strong> secondes</p>
+    </div>
+
+    <table class="table table-bordered user-table">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Nom d'utilisateur</th>
+                <th>Email</th>
+                <th>Rôles</th>
+                <th>Dernière connexion</th>
+                <th>Date d'inscription</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for user in users %}
+                <tr>
+                    <td>{{ user.id }}</td>
+                    <td>{{ user.username }}</td>
+                    <td>{{ user.email }}</td>
+                    <td>
+                        {% if user.is_admin %} Admin {% endif %}
+                        {% if user.is_manager %} Manager {% endif %}
+                        {% if user.is_client %} Client {% endif %}
+                    </td>
+                    <td>{{ user.last_login }}</td>
+                    <td>{{ user.date_joined }}</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endblock %}

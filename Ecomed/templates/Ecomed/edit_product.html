@@ -1,0 +1,17 @@
+{% extends 'Ecomed/base.html' %}
+
+{% load static %}
+{% block stylesheets %}
+    <link rel="stylesheet" href="{% static 'ecomed_edit_product.css' %}">
+{% endblock %}
+
+{% block content %}
+<div class="container mt-5">
+    <h1 class="mb-4">🛠️ Modifier le Produit</h1>
+    <form method="post" enctype="multipart/form-data" class="form-container">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit" class="btn btn-primary">💾 Sauvegarder</button>
+    </form>
+</div>
+{% endblock %}

@@ -1,0 +1,38 @@
+{% extends 'Ecomed/base.html' %}
+
+{% load static %}
+{% block stylesheets %}
+    <link rel="stylesheet" href="{% static 'ecomed_client_order_history.css' %}">
+{% endblock %}
+
+{% block content %}
+<!-- Logo with link to home -->
+<a href="{% url 'home' %}" class="logo">
+    <img src="{% static 'images/logo.png' %}" alt="Logo">
+</a>
+
+<h1>🕒 Historique des commandes</h1>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Produit</th>
+            <th>Quantité</th>
+            <th>Prix</th>
+            <th>Date</th>
+            <th>Délai de livraison</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for order in orders %}
+        <tr>
+            <td>{{ order.product.name }}</td>
+            <td>{{ order.quantity }}</td>
+            <td>{{ order.total_price }}€</td>
+            <td>{{ order.created_at }}</td>
+            <td>{{ order.delivery_deadline }}</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endblock %}

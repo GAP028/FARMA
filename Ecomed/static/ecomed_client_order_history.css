@@ -1,0 +1,106 @@
+/* Styles généraux */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f8f9fa; /* Couleur de fond douce */
+    color: #212529;
+    position: relative; /* Nécessaire pour positionner le logo en absolu */
+}
+
+/* Container principal */
+.container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: var(--blanc-pur); /* Couleur blanche pour le fond */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+}
+
+/* Titres */
+h1 {
+    font-size: 2rem;
+    color: var(--vert-calme);
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+/* Table Styles */
+.table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 20px;
+}
+
+.table thead {
+    background-color: var(--vert-calme);
+    color: var(--blanc-pur);
+}
+
+.table th,
+.table td {
+    padding: 12px;
+    text-align: left;
+    border-bottom: 1px solid #dee2e6;
+}
+
+.table th {
+    font-weight: bold;
+}
+
+.table-striped tbody tr:nth-of-type(odd) {
+    background-color: var(--bleu-clair);
+}
+
+.table-responsive {
+    overflow-x: auto;
+}
+
+/* Indicateurs de délai de livraison */
+.text-danger {
+    color: #dc3545;
+    font-weight: bold;
+}
+
+.text-success {
+    color: #28a745;
+    font-weight: bold;
+}
+
+.text-muted {
+    color: #6c757d;
+}
+
+/* Styles supplémentaires */
+.text-center {
+    text-align: center;
+}
+
+.mt-5 {
+    margin-top: 3rem;
+}
+
+.mb-4 {
+    margin-bottom: 1.5rem;
+}
+
+.box-shadow {
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+/* Logo Styles */
+.logo {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    overflow: hidden;
+    cursor: pointer;
+    z-index: 1000; /* Assure que le logo reste au-dessus du reste du contenu */
+}
+
+.logo img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Assure que l'image couvre bien le conteneur */
+}

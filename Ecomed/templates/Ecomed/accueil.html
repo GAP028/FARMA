@@ -1,0 +1,250 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Page d'accueil - Pharmacie</title>
+    <!-- Lien vers le fichier CSS -->
+    <link rel="stylesheet" href="{% static 'main.css' %}">
+    <!-- Lien vers Font Awesome pour les icônes -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <!-- Top Bar -->
+        <div class="top-bar">
+            <div class="container">
+                <div class="top-bar-left">
+                    <a href="/help-center">Help Center</a>
+                    <a href="/todays-deal">Today's Deal</a>
+                    <a href="/order-tracking">Order Tracking</a>
+                </div>
+                <div class="top-bar-right">
+                    <span>Get Up to 25% Cashback On First Order: GET25OFF</span>
+                    <a href="/shop" class="btn-primary">SHOP NOW</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Main Header -->
+        <div class="main-header">
+            <div class="container">
+                <div class="logo">
+                    <img src="{% static 'images/logo.jpg' %}" alt="EcoMed Logo">
+                    <h1>EcoMed</h1>
+                </div>
+                <div class="search-bar">
+                    <input type="text" placeholder="Rechercher...">
+                    <i class="fa fa-search"></i>
+                </div>
+                <div class="user-links">
+                    <a href="/connexion">Connexion</a>
+                    <span>/</span>
+                    <a href="/inscription">Inscription</a>
+                </div>
+                <div class="icons">
+                    <button><i class="fa fa-exchange-alt"></i></button>
+                    <button><i class="fa fa-heart"></i></button>
+                    <button><i class="fa fa-shopping-cart"></i></button>
+                    <button><i class="fa fa-user"></i></button>
+                </div>
+            </div>
+        </div>
+ 
+  
+        <!-- Navigation Bar -->
+        <div class="nav-bar">
+            <div class="container">
+                <div class="category-menu">
+                    <button class="category-btn"><i class="fa fa-bars"></i> Acheter par catégorie</button>
+                    <div class="category-dropdown">
+                        <button>Catégorie 1</button>
+                        <button>Catégorie 2</button>
+                        <button>Catégorie 3</button>
+                        <button>Catégorie 4</button>
+                        <button>Catégorie 5</button>
+                    </div>
+                </div>
+                <nav class="nav-links">
+                    <a href="/Medical supplies">Medical supplies</a>
+                    <a href="/Thermometer">Thermometer</a>
+                    <a href="/todays-deal">Today's Deal</a>
+                    <a href="/all-brands">Toutes Les Marques</a>
+                    <a href="/more">Suite</a>
+                </nav>
+                <div class="language-currency">
+                    <button class="btn">Langue</button>
+                    <button class="btn">Monnaie</button>
+                </div>
+            </div>
+        </div>
+    </header>
+    
+<!-- Drawer Header Section -->
+<section>
+    <!-- Header -->
+    <header class="drawer-header bg-green-600 p-4 text-white flex justify-between items-center">
+      <h1 class="text-lg font-bold">My App</h1>
+      <button class="drawer-toggle-btn">☰</button>
+    </header>
+  
+    <!-- Overlay for Drawer -->
+    <div class="drawer-overlay"></div>
+  
+    <!-- Drawer Navigation -->
+    <div class="drawer-nav">
+      <nav class="p-4">
+        <ul>
+          <li class="mb-2">
+            <button class="submenu-toggle-btn">Medical Supplies</button>
+            <ul class="submenu">
+              <li class="mb-2">
+                <a href="/submenu" class="text-blue-600">Surgical Mask</a>
+              </li>
+              <li><a href="#rr" class="text-blue-600">Medkits</a></li>
+              <li><a href="#rr" class="text-blue-600">Wound Care</a></li>
+            </ul>
+          </li>
+          <li class="mb-2"><a href="/facemask" class="text-blue-600">Face Mask</a></li>
+          <li><a href="/buffercap" class="text-blue-600">Buffer Capsules</a></li>
+          <li><a href="/equipment" class="text-blue-600">Equipment</a></li>
+          <li><a href="/ventilator" class="text-blue-600">Ventilator</a></li>
+          <li><a href="/handwash" class="text-blue-600">Handwash</a></li>
+          <li><a href="/sanitizer" class="text-blue-600">Sanitizer</a></li>
+          <li><a href="/bandages" class="text-blue-600">Bandages</a></li>
+          <li><a href="/bpmachine" class="text-blue-600">BP Machine</a></li>
+        </ul>
+      </nav>
+    </div>
+  </section>
+
+    <main>
+        <h1>Bienvenue sur le site de la pharmacie</h1>
+        
+        <!-- Blog Carousel -->
+        <section class="blog-carousel">
+            <div class="container">
+                <h2>Du Blog</h2>
+                <div class="carousel-wrapper">
+                    <div class="carousel" id="blog-carousel">
+                        <!-- Blog items will be dynamically inserted here -->
+                    </div>
+                    <button id="prev-btn" class="carousel-btn">&lt;</button>
+                    <button id="next-btn" class="carousel-btn">&gt;</button>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Brands Grid -->
+        <section class="brands-grid">
+            <div class="container">
+                <h2>Magasiner Par Marques</h2>
+                <div class="brand-logos">
+                    <!-- Brand logos will be dynamically inserted here -->
+                </div>
+            </div>
+        </section>
+    </main>
+
+<!-- Testimonials Section -->
+<section class="testimonials py-16 bg-gray-100">
+    <div class="container">
+      <h2 class="text-3xl font-bold mb-8 text-center">What Our Clients Say</h2>
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div class="testimonial bg-white p-6 rounded-lg shadow-lg">
+          <div class="flex items-center mb-4">
+            <img src="{% static 'images/client1.webp' %}" alt="Luies Charls" class="w-16 h-16 rounded-full object-cover mr-4">
+            <div class="text-left">
+              <h3 class="text-xl font-bold">Luies Charls</h3>
+              <p class="text-gray-600">Helper</p>
+            </div>
+          </div>
+          <p class="text-gray-700">Galley of type and scrambled it to make a type specimen book. Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s.</p>
+        </div>
+  
+        <div class="testimonial bg-white p-6 rounded-lg shadow-lg">
+          <div class="flex items-center mb-4">
+            <img src="{% static 'images/client2.webp' %}" alt="Jecob Goeckno" class="w-16 h-16 rounded-full object-cover mr-4">
+            <div class="text-left">
+              <h3 class="text-xl font-bold">Jecob Goeckno</h3>
+              <p class="text-gray-600">Unit Manager</p>
+            </div>
+          </div>
+          <p class="text-gray-700">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s.</p>
+        </div>
+  
+        <div class="testimonial bg-white p-6 rounded-lg shadow-lg">
+          <div class="flex items-center mb-4">
+            <img src="{% static 'images/client3.webp' %}" alt="Mr. Danial Smith" class="w-16 h-16 rounded-full object-cover mr-4">
+            <div class="text-left">
+              <h3 class="text-xl font-bold">Mr. Danial Smith</h3>
+              <p class="text-gray-600">Sales Person</p>
+            </div>
+          </div>
+          <p class="text-gray-700">Publishing printer took a galley. Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+  
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-column">
+                    <h3>Contactez-nous</h3>
+                    <p>Medipine - Medical Store<br>507-Union Trade Centre<br>123456 France</p>
+                    <p class="contact-phone">(+91) 9876-543-210</p>
+                    <p>sales@yourcompany.com</p>
+                </div>
+
+                <div class="footer-column">
+                    <h3>Nos Produits</h3>
+                    <ul>
+                        <li>Promotions</li>
+                        <li>Nouveaux Produits</li>
+                        <li>Meilleurs Ventes</li>
+                        <li>Contactez-Nous</li>
+                        <li>Plan du Site</li>
+                        <li>Magasins</li>
+                    </ul>
+                </div>
+
+                <div class="footer-column">
+                    <h3>Notre Société</h3>
+                    <ul>
+                        <li>Delivery</li>
+                        <li>Legal Notice</li>
+                        <li>Terms and conditions of use</li>
+                        <li>About Us</li>
+                        <li>My Account</li>
+                    </ul>
+                </div>
+
+                <div class="footer-column">
+                    <h3>S'inscrire à la Newsletter</h3>
+                    <p>Subscribe to our latest newsletter to get news about special discounts.</p>
+                    <form>
+                        <input type="email" placeholder="Your email address">
+                        <button type="button">S'abboner</button>
+                        <div class="terms-checkbox">
+                            <input type="checkbox" id="terms">
+                            <label for="terms">I agree to the terms and conditions and the privacy policy</label>
+                        </div>
+                        <button type="submit">S'inscrire</button>
+                    </form>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; Ce site utilise des cookies. En continuant à utiliser ce site, vous acceptez notre utilisation des cookies. <a href="#" class="underline">Politique de confidentialité</a></p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Lien vers le fichier JavaScript -->
+    <script src="{% static 'scripts.js' %}"></script>
+</body>
+</html>

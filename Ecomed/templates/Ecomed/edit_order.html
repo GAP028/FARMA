@@ -1,0 +1,27 @@
+{% extends 'Ecomed/base.html' %}
+
+{% load static %}
+{% block stylesheets %}
+    <link rel="stylesheet" href="{% static 'ecomed_edit_order.css' %}">
+{% endblock %}
+
+{% block content %}
+<div class="container mt-5">
+    <h1 class="mb-4">📝 Modifier la Commande</h1>
+    <form method="post" class="form-container">
+        {% csrf_token %}
+        
+        <div class="form-section mb-4">
+            <h2>Détails de la Commande</h2>
+            {{ order_form.as_p }}
+        </div>
+        
+        <div class="form-section mb-4">
+            <h2>Informations d'Adresse</h2>
+            {{ address_form.as_p }}
+        </div>
+        
+        <button type="submit" class="btn btn-primary">💾 Sauvegarder</button>
+    </form>
+</div>
+{% endblock %}

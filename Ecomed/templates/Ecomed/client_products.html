@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Catalogue de Produits</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'ecomed_client_products.css' %}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+    <!-- Logo with link to home -->
+    <a href="{% url 'home' %}" class="logo">
+        <img src="{% static 'images/logo.png' %}" alt="Logo">
+    </a>
+
+    <div class="container">
+        <h2>🛒 Liste des Produits</h2>
+        <form method="get" action="{% url 'client_products' %}">
+            <input type="text" name="search" placeholder="🔍 Rechercher des produits" value="{{ request.GET.search }}">
+            <button type="submit"><i class="fas fa-search"></i> Rechercher</button>
+        </form>
+        <table>
+            <thead>
+                <tr>
+                    <th>Image</th>
+                    <th>Nom</th>
+                    <th>Description</th>
+                    <th>Prix</th>
+                    <th>Quantité</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for product in products %}
+                    <tr>
+                        <td>
+                            {% if product.image %}
+                                <img src="{{ product.image.url }}" alt="{{ product.name }}" style="width: 100px; height: auto;">
+                            {% else %}
+                                <img src="{% static 'default_product_image.png' %}" alt="Image non disponible" style="width: 100px; height: auto;">
+                            {% endif %}
+                        </td>
+                        <td>{{ product.name }}</td>
+                        <td>{{ product.description }}</td>
+                        <td>{{ product.price }}€</td>
+                        <td>
+                            <form method="post" action="{% url 'add_to_cart' product.id %}">
+                                {% csrf_token %}
+                                <input type="number" name="quantity" min="1" max="{{ product.stock }}" value="1" style="width: 60px;">
+                                <button type="submit"><i class="fas fa-cart-plus"></i> Ajouter au panier</button>
+                            </form>
+                        </td>
+                    </tr>
+                {% empty %}
+                    <tr>
+                        <td colspan="6">Aucun produit trouvé</td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</body>
+</html>

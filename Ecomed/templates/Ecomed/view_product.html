@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Voir un Produit</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'ecomed_view_product.css' %}">
+</head>
+<body>
+    <div class="product-container">
+        <h1 class="product-title">🎁 Voir un Produit</h1>
+        <div class="product-details">
+            <p><strong>📦 Nom:</strong> {{ product.name }}</p>
+            <p><strong>📝 Description:</strong> {{ product.description }}</p>
+            <p><strong>💰 Prix:</strong> {{ product.price }} €</p>
+        </div>
+    </div>
+</body>
+</html>

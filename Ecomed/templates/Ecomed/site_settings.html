@@ -1,0 +1,50 @@
+{% extends 'Ecomed/base.html' %}
+
+{% load static %}
+
+{% block stylesheets %}
+    <link rel="stylesheet" href="{% static 'ecomed_site_settings.css' %}">
+{% endblock %}
+
+{% block content %}
+<div class="container">
+    <h1>⚙️ Paramètres du Site</h1>
+
+    {% if messages %}
+    <div class="alert alert-info">
+        <i class="fas fa-info-circle"></i>
+        {% for message in messages %}
+            <span class="message">{{ message }}</span>
+        {% endfor %}
+    </div>
+    {% endif %}
+
+    <form method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit" class="btn btn-primary">💾 Sauvegarder</button>
+    </form>
+
+    <h2>🕒 Historique des Modifications</h2>
+    <table class="table table-bordered">
+        <thead>
+            <tr>
+                <th>Date</th>
+                <th>Utilisateur</th>
+                <th>Action</th>
+                <th>Objet</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for entry in history %}
+                <tr>
+                    <td>{{ entry.timestamp }}</td>
+                    <td>{{ entry.user.username }}</td>
+                    <td>{{ entry.action }}</td>
+                    <td>{{ entry.object_type }} #{{ entry.object_id }}</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endblock %}

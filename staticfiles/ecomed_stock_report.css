@@ -1,0 +1,134 @@
+:root {
+    --vert-calme: #4CAF50;
+    --blanc-pur: #FFFFFF;
+    --bleu-clair: #AEDFF7;
+    --bleu-doux: #B3E5FC;
+    --vert-clair: #D4EDDA;
+    --noir: #000000;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: var(--bleu-doux);
+    color: var(--noir);
+    margin: 0;
+    padding: 20px;
+}
+
+.container {
+    max-width: 800px; /* Réduction de la largeur de la page */
+    margin: auto;
+    background-color: var(--blanc-pur);
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+h1 {
+    color: var(--vert-calme);
+    text-align: center;
+    margin-bottom: 20px;
+    font-size: 1.8em; /* Réduction de la taille de la police */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+h1 i {
+    margin-right: 10px;
+}
+
+.stock-filter-form {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px; /* Espacement entre les champs */
+    margin-bottom: 20px;
+}
+
+.form-group {
+    flex: 1 1 calc(50% - 15px); /* Réduit la largeur des champs à moins de 50% de la largeur du conteneur avec un espace de 15px */
+    margin-bottom: 15px;
+}
+
+.form-group label {
+    font-weight: bold;
+    color: var(--noir);
+    margin-bottom: 5px;
+    font-size: 0.9em; /* Réduction de la taille de la police */
+}
+
+.form-group input,
+.form-group select {
+    width: 100%;
+    padding: 8px; /* Réduction de la hauteur des champs */
+    border: 1px solid var(--bleu-clair);
+    border-radius: 5px;
+    font-size: 0.9em; /* Réduction de la taille de la police */
+}
+
+.form-buttons {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+}
+
+.form-buttons button,
+.form-buttons .btn {
+    background-color: var(--vert-calme);
+    color: var(--blanc-pur);
+    padding: 8px 15px; /* Réduction de la taille des boutons */
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    text-decoration: none;
+    font-size: 0.9em; /* Réduction de la taille de la police */
+}
+
+.form-buttons button:hover,
+.form-buttons .btn:hover {
+    background-color: var(--vert-calme);
+    filter: brightness(90%);
+}
+
+.table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+
+.table th,
+.table td {
+    padding: 10px; /* Réduction de la taille du padding */
+    text-align: left;
+    border-bottom: 1px solid var(--bleu-clair);
+    font-size: 0.9em; /* Réduction de la taille de la police */
+}
+
+.table th {
+    background-color: var(--vert-calme);
+    color: var(--blanc-pur);
+}
+
+.table-danger {
+    background-color: var(--vert-clair);
+}
+
+.table img {
+    border-radius: 5px;
+}
+
+.table i {
+    font-size: 1.3em; /* Réduction de la taille des icônes */
+    color: var(--bleu-clair);
+}
+
+.table-bordered {
+    border: 1px solid var(--bleu-clair);
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+.table thead {
+    background-color: var(--bleu-clair);
+}

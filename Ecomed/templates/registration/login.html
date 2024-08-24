@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Connexion</title>
+    {% load static %}
+    <link rel="stylesheet" type="text/css" href="{% static 'login.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'styles.css' %}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+    <!-- Logo with link to home -->
+    <a href="{% url 'home' %}" class="logo">
+        <img src="{% static 'images/logo.png' %}" alt="Logo">
+    </a>
+
+    <h2><i class="fas fa-sign-in-alt"></i> Connexion</h2>
+    <form method="post" action="{% url 'login' %}">
+        {% csrf_token %}
+        {{ form.non_field_errors }}
+        <div>
+            <label for="{{ form.username.id_for_label }}"><i class="fas fa-user"></i> {{ form.username.label }}</label>
+            {{ form.username }}
+            {% for error in form.username.errors %}
+                <span class="errorlist">{{ error }}</span>
+            {% endfor %}
+        </div>
+        <div class="password-field">
+            <label for="{{ form.password.id_for_label }}"><i class="fas fa-lock"></i> {{ form.password.label }}</label>
+            {{ form.password }}
+            <i class="fas fa-eye toggle-password" data-target="{{ form.password.id_for_label }}"></i>
+            {% for error in form.password.errors %}
+                <span class="errorlist">{{ error }}</span>
+            {% endfor %}
+        </div>
+        <button type="submit"><i class="fas fa-sign-in-alt"></i> Se connecter</button>
+    </form>
+    <a href="{% url 'signup' %}"><i class="fas fa-user-plus"></i> Pas encore inscrit ? Inscrivez-vous</a>
+
+    <script src="{% static 'toggle-password.js' %}"></script>
+</body>
+</html>

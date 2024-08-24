@@ -1,0 +1,60 @@
+{% extends 'Ecomed/base.html' %}
+{% load static %}
+
+{% block stylesheets %}
+    <link rel="stylesheet" href="{% static 'ecomed_edit_user.css' %}">
+{% endblock %}
+
+{% block content %}
+<div class="container">
+    <h1>📝 Modifier l'utilisateur</h1>
+    <form method="post" novalidate>
+        {% csrf_token %}
+
+        {% if form.errors %}
+        <div class="errors">
+            <ul>
+                {% for field in form %}
+                    {% for error in field.errors %}
+                        <li>⚠️ {{ field.label }}: {{ error }}</li>
+                    {% endfor %}
+                {% endfor %}
+                {% for error in form.non_field_errors %}
+                    <li>⚠️ {{ error }}</li>
+                {% endfor %}
+            </ul>
+        </div>
+        {% endif %}
+
+        <label for="id_username">👤 Nom d'utilisateur:</label>
+        {{ form.username }}
+
+        <label for="id_email">📧 Email:</label>
+        {{ form.email }}
+
+        <label for="id_first_name">📝 Prénom:</label>
+        {{ form.first_name }}
+
+        <label for="id_last_name">📝 Nom:</label>
+        {{ form.last_name }}
+
+        <label for="id_is_admin">🔑 Admin:</label>
+        {{ form.is_admin }}
+
+        <label for="id_is_manager">🛠️ Manager:</label>
+        {{ form.is_manager }}
+
+        <label for="id_is_client">👥 Client:</label>
+        {{ form.is_client }}
+
+        <label for="id_date_joined_display">📅 Date d'inscription:</label>
+        {{ form.date_joined_display }}
+
+        <button type="submit" class="default">💾 Sauvegarder</button>
+    </form>
+
+    <div class="button-container">
+        <a href="{% url 'change_password' %}" class="btn btn-secondary">🔒 Changer le mot de passe</a>
+    </div>
+</div>
+{% endblock %}

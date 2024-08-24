@@ -1,0 +1,112 @@
+:root {
+    --vert-calme: #4CAF50;
+    --rouge-clair: #E57373;
+    --bleu-clair: #AEDFF7;
+    --bleu-doux: #B3E5FC;
+    --noir: #000000;
+    --gris-foncé: #333333;
+    --gris-clair: #F0F0F0;
+    --blanc-pur: #FFFFFF;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: var(--gris-clair);
+    color: var(--gris-foncé);
+}
+
+.user-details-container {
+    max-width: 600px;
+    margin: auto;
+    padding: 20px;
+    background-color: var(--blanc-pur);
+    border-radius: 10px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+h2 {
+    color: var(--vert-calme);
+    text-align: center;
+    margin-bottom: 20px;
+    font-size: 1.8em;
+}
+
+.user-details-card {
+    background-color: var(--bleu-doux);
+    padding: 20px;
+    border-radius: 10px;
+}
+
+.user-details-card p {
+    font-size: 1.2em;
+    margin: 10px 0;
+}
+
+.user-details-card .icon {
+    margin-right: 10px;
+    color: var(--gris-foncé);
+}
+
+.role {
+    display: inline-block;
+    padding: 2px 6px;
+    border-radius: 4px;
+    color: var(--blanc-pur);
+}
+
+.role-admin {
+    background-color: var(--rouge-clair);
+}
+
+.role-manager {
+    background-color: var(--bleu-clair);
+}
+
+.role-client {
+    background-color: var(--vert-calme);
+}
+
+.action-buttons {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 20px;
+}
+
+.btn {
+    padding: 10px 20px;
+    text-align: center;
+    border-radius: 5px;
+    color: var(--blanc-pur);
+    text-decoration: none;
+    transition: background-color 0.3s ease;
+    display: inline-flex;
+    align-items: center;
+}
+
+.edit-btn {
+    background-color: var(--vert-calme);
+}
+
+.edit-btn:hover {
+    background-color: var(--vert-calme);
+}
+
+.delete-btn {
+    background-color: var(--rouge-clair);
+}
+
+.delete-btn:hover {
+    background-color: darken(var(--rouge-clair), 10%);
+}
+
+.back-btn {
+    background-color: var(--bleu-clair);
+}
+
+.back-btn:hover {
+    background-color: darken(var(--bleu-clair), 10%);
+}
+
+.icon {
+    margin-right: 8px;
+}

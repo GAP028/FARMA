@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Panier d'Achat</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'ecomed_client_cart.css' %}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+</head>
+<body>
+    <!-- Logo with link to home -->
+    <a href="{% url 'home' %}" class="logo">
+        <img src="{% static 'images/logo.png' %}" alt="Logo">
+    </a>
+
+    <div class="container">
+        <h2>🛒 Votre Panier</h2>
+        <table class="cart-table">
+            <thead>
+                <tr>
+                    <th>Image</th>
+                    <th>Produit</th>
+                    <th>Quantité</th>
+                    <th>Prix Total</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for order in orders %}
+                    <tr>
+                        <td><img src="{{ order.product.image.url }}" alt="{{ order.product.name }}" width="50"></td>
+                        <td>{{ order.product.name }}</td>
+                        <td>
+                            <form method="post" action="{% url 'client_cart' %}">
+                                {% csrf_token %}
+                                <input type="hidden" name="order_id" value="{{ order.id }}">
+                                <input type="number" name="quantity" value="{{ order.quantity }}" min="1" max="{{ order.product.stock }}">
+                                <button type="submit" name="update_quantity"><i class="fas fa-sync-alt"></i> Mettre à jour</button>
+                            </form>
+                        </td>
+                        <td>{{ order.total_price }}€</td>
+                        <td>
+                            <form method="post" action="{% url 'remove_from_cart' order.id %}">
+                                {% csrf_token %}
+                                <button type="submit" class="btn btn-danger"><i class="fas fa-trash-alt"></i> Retirer</button>
+                            </form>
+                        </td>
+                    </tr>
+                {% empty %}
+                    <tr>
+                        <td colspan="5">Votre panier est vide</td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+
+        <h3>Adresse de Livraison</h3>
+        <form method="post">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button type="submit" class="btn btn-primary"><i class="fas fa-check"></i> Passer la commande</button>
+        </form>
+    </div>
+</body>
+</html>

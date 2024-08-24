@@ -1,0 +1,111 @@
+{% extends 'Ecomed/base.html' %}
+
+{% load static %}
+{% block stylesheets %}
+    <link rel="stylesheet" href="{% static 'ecomed_sales_report.css' %}">
+{% endblock %}
+
+{% block content %}
+<div class="container mt-4">
+    <h1 class="mb-4">📈 Rapport de Ventes</h1>
+
+    <!-- Résumé des ventes -->
+    <div class="row mb-4">
+        <div class="col-md-6 mb-3">
+            <h2>✔️ Total de Commandes Complétées</h2>
+            <p>{{ total_completed_orders }}</p>
+        </div>
+        <div class="col-md-6 mb-3">
+            <h2>💵 Chiffre d'Affaires des Commandes Complétées</h2>
+            <p>{{ total_revenue_completed }}</p>
+        </div>
+        <div class="col-md-6 mb-3">
+            <h2>🛒 Panier Moyen des Commandes Complétées</h2>
+            <p>{{ average_cart_value_completed }}</p>
+        </div>
+        <div class="col-md-6 mb-3">
+            <h2>📋 Total de Toutes les Commandes</h2>
+            <p>{{ total_orders }}</p>
+        </div>
+        <div class="col-md-6 mb-3">
+            <h2>💰 Chiffre d'Affaires Total</h2>
+            <p>{{ total_revenue_all }}</p>
+        </div>
+        <div class="col-md-6 mb-3">
+            <h2>🛍️ Panier Moyen de Toutes les Commandes</h2>
+            <p>{{ average_cart_value_all }}</p>
+        </div>
+        <div class="col-md-6 mb-3">
+            <h2>🔄 Taux de Rétention</h2>
+            <p>{{ retention_rate }}%</p>
+        </div>
+    </div>
+
+    <!-- Commandes Complétées -->
+    <h3 class="mb-3">✔️ Commandes Complétées</h3>
+    <table class="table table-bordered table-striped">
+        <thead class="thead-dark">
+            <tr>
+                <th>ID</th>
+                <th>Produit</th>
+                <th>Utilisateur</th>
+                <th>Quantité</th>
+                <th>Prix Total</th>
+                <th>Date de création</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for order in completed_orders %}
+                <tr>
+                    <td>{{ order.id }}</td>
+                    <td>{{ order.product.name }}</td>
+                    <td>{{ order.user.username }}</td>
+                    <td>{{ order.quantity }}</td>
+                    <td>{{ order.total_price }}</td>
+                    <td>{{ order.created_at }}</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+    <!-- Répartition des Commandes par Statut -->
+    <h3 class="mb-3">📊 Répartition des Commandes par Statut</h3>
+    <ul class="list-group mb-4">
+        {% for status in orders_by_status %}
+            <li class="list-group-item">
+                {{ status.status }}: {{ status.total }}
+            </li>
+        {% endfor %}
+    </ul>
+
+    <!-- Toutes les Commandes -->
+    <h3 class="mb-3">📦 Toutes les Commandes</h3>
+    <table class="table table-bordered table-striped">
+        <thead class="thead-dark">
+            <tr>
+                <th>ID</th>
+                <th>Produit</th>
+                <th>Utilisateur</th>
+                <th>Quantité</th>
+                <th>Prix Total</th>
+                <th>Date de création</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for order in all_orders %}
+                <tr>
+                    <td>{{ order.id }}</td>
+                    <td>{{ order.product.name }}</td>
+                    <td>{{ order.user.username }}</td>
+                    <td>{{ order.quantity }}</td>
+                    <td>{{ order.total_price }}</td>
+                    <td>{{ order.created_at }}</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+    <!-- Exporter en CSV -->
+    <a href="?export=csv" class="btn btn-primary mt-4">📂 Exporter en CSV</a>
+</div>
+{% endblock %}

@@ -1,0 +1,97 @@
+/* Styles de base pour le corps */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #AEDFF7; /* Couleur de fond de la page */
+    color: #000000; /* Couleur du texte */
+    position: relative; /* Nécessaire pour positionner le logo en absolu */
+}
+
+/* Conteneur principal pour centrer le contenu */
+.container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #FFFFFF; /* Couleur de fond du conteneur */
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Styles pour le tableau du panier */
+.cart-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 20px;
+}
+
+.cart-table th,
+.cart-table td {
+    padding: 12px;
+    border: 1px solid #B3E5FC;
+    text-align: center;
+}
+
+.cart-table th {
+    background-color: #B3E5FC; /* Couleur d'arrière-plan des en-têtes de tableau */
+}
+
+.cart-table td {
+    background-color: #FFFFFF; /* Couleur d'arrière-plan des cellules de tableau */
+}
+
+/* Bouton retirer du panier */
+.btn {
+    padding: 10px 15px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 14px;
+}
+
+.btn-primary {
+    background-color: #4CAF50; /* Couleur du bouton "Passer la commande" */
+    color: #FFFFFF; /* Couleur du texte du bouton */
+}
+
+.btn-danger {
+    background-color: #F44336; /* Couleur du bouton "Retirer" */
+    color: #FFFFFF; /* Couleur du texte du bouton */
+}
+
+/* Styles pour les formulaires */
+.form-group {
+    margin-bottom: 15px;
+}
+
+button[type="submit"] {
+    background-color: #4CAF50;
+    color: #FFFFFF;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+button[type="submit"]:hover {
+    background-color: #388E3C;
+}
+
+/* Logo Styles */
+.logo {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%; /* Assure que le logo soit en forme de cercle */
+    overflow: hidden;
+    cursor: pointer;
+    z-index: 1000; /* Assure que le logo reste au-dessus du reste du contenu */
+}
+
+.logo img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Assure que l'image couvre bien le conteneur */
+}

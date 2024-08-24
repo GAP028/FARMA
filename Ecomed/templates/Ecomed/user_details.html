@@ -1,0 +1,28 @@
+{% extends 'Ecomed/base.html' %}
+
+{% load static %}
+
+{% block content %}
+<link rel="stylesheet" type="text/css" href="{% static 'ecomed_user_details.css' %}">
+
+<div class="user-details-container">
+    <h2><i class="fas fa-user icon"></i> Détails de l'utilisateur</h2>
+    <div class="user-details-card">
+        <p><i class="fas fa-user-circle icon"></i> Nom d'utilisateur: <strong>{{ user.username }}</strong></p>
+        <p><i class="fas fa-id-badge icon"></i> Nom: <strong>{{ user.first_name }} {{ user.last_name }}</strong></p>
+        <p><i class="fas fa-envelope icon"></i> Email: <strong>{{ user.email }}</strong></p>
+        <p><i class="fas fa-user-tag icon"></i> Rôles: 
+            <strong>
+                {% if user.is_admin %}<span class="role role-admin">Admin</span>{% endif %}
+                {% if user.is_manager %}<span class="role role-manager">Manager</span>{% endif %}
+                {% if user.is_client %}<span class="role role-client">Client</span>{% endif %}
+            </strong>
+        </p>
+        <div class="action-buttons">
+            <a href="{% url 'edit_user' user.id %}" class="btn edit-btn"><i class="fas fa-edit icon"></i> Modifier</a>
+            <a href="{% url 'delete_user' user.id %}" class="btn delete-btn"><i class="fas fa-trash icon"></i> Supprimer</a>
+            <a href="{% url 'users_list' %}" class="btn back-btn"><i class="fas fa-arrow-left icon"></i> Retour à la liste des utilisateurs</a>
+        </div>
+    </div>
+</div>
+{% endblock %}

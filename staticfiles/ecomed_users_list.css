@@ -1,0 +1,133 @@
+:root {
+    --primary-color: #4CAF50;
+    --secondary-color: #AEDFF7;
+    --background-color: #F9F9F9;
+    --text-color: #333;
+    --header-color: #fff;
+}
+
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: var(--background-color);
+    color: var(--text-color);
+    margin: 0;
+    padding: 0;
+    position: relative; /* Nécessaire pour positionner le logo en absolu */
+}
+
+/* Logo Styles */
+.logo {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%; /* Assure que le logo soit en forme de cercle */
+    overflow: hidden;
+    cursor: pointer;
+    z-index: 1000; /* Assure que le logo reste au-dessus du reste du contenu */
+}
+
+.logo img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Assure que l'image couvre bien le conteneur */
+}
+
+.dashboard-container {
+    width: 80%;
+    margin: 50px auto;
+    background-color: var(--header-color);
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.header {
+    display: flex;
+    align-items: center;
+    color: var(--primary-color);
+    font-size: 2em;
+    margin-bottom: 20px;
+}
+
+.header-icon {
+    margin-right: 15px;
+}
+
+.nav-list {
+    list-style: none;
+    display: flex;
+    justify-content: space-around;
+    padding: 0;
+    margin: 20px 0;
+    background-color: var(--secondary-color);
+    border-radius: 8px;
+}
+
+.nav-list li {
+    flex: 1;
+    text-align: center;
+}
+
+.nav-list a {
+    text-decoration: none;
+    color: var(--text-color);
+    font-size: 1.2em;
+    padding: 10px;
+    display: block;
+}
+
+.nav-list a:hover {
+    background-color: var(--primary-color);
+    color: var(--header-color);
+}
+
+.nav-icon {
+    margin-right: 5px;
+}
+
+.users-section {
+    background-color: var(--background-color);
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.users-header {
+    display: flex;
+    align-items: center;
+    font-size: 1.8em;
+    color: var(--primary-color);
+    margin-bottom: 15px;
+}
+
+.total-users {
+    font-size: 1.2em;
+    margin-bottom: 20px;
+}
+
+.user-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.user-table th,
+.user-table td {
+    padding: 10px;
+    border-bottom: 1px solid var(--secondary-color);
+    text-align: left;
+}
+
+.user-table th {
+    background-color: var(--primary-color);
+    color: var(--header-color);
+}
+
+.user-table tr:nth-child(even) {
+    background-color: var(--header-color);
+}
+
+.user-table tr:hover {
+    background-color: var(--secondary-color);
+}
