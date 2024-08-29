@@ -1,116 +1,98 @@
-// Blog Carousel JavaScript
-const blogs = [
-    {
-        id: 1,
-        date: '3 AVRIL, 2023',
-        title: 'Turpis at eleifend Aenean porta',
-        description: 'Turpis at eleifend ps mi elit Aenean porta ac sed faucibus. Nunc urna...',
-        image: 'images/blog1.jpeg', // Change to relative path
-        link: '#'
-    },
-    {
-        id: 2,
-        date: '1 AVRIL, 2023',
-        title: 'Morbi condimentum molestie Nam',
-        description: 'Sed mauris Pellentesque elit Aliquam at lacus interdum nascetur elit...',
-        image: 'images/blog2.jpeg', // Change to relative path
-        link: '#'
-    },
-    {
-        id: 3,
-        date: '18 MARS, 2023',
-        title: 'Curabitur at elit Vestibulum',
-        description: 'Mi vitae magnis Fusce laoreet nibh felis porttitor laoreet Vestibulum...',
-        image: 'images/blog3.jpeg', // Change to relative path
-        link: '#'
-    },
-    {
-        id: 5,
-        date: '12 MARS, 2023',
-        title: 'Etiam sit amet orci eget',
-        description: 'Aenean massa. Cum sociis natoque penatibus et magnis dis parturient...',
-        image: 'images/blog5.jpeg', // Change to relative path
-        link: '#'
+document.addEventListener('DOMContentLoaded', function() {
+    // Sélection des éléments de langue et de monnaie
+    const languageDropdown = document.querySelector('.language-dropdown');
+    const currencyDropdown = document.querySelector('.currency-dropdown');
+
+    // Fonction pour mettre à jour le texte du bouton avec l'option sélectionnée
+    function updateButtonText(button, selectedItem) {
+        button.innerText = selectedItem.innerText;
     }
-];
 
-const blogCarousel = document.getElementById('blog-carousel');
-const prevBtn = document.getElementById('prev-btn');
-const nextBtn = document.getElementById('next-btn');
-let current = 0;
+    // Ajout d'un gestionnaire d'événements de clic pour les options de langue
+    languageDropdown.querySelectorAll('.dropdown-content a').forEach(option => {
+        option.addEventListener('click', function(event) {
+            event.preventDefault();
+            updateButtonText(languageDropdown.querySelector('.dropbtn'), option);
+        });
+    });
 
-function updateCarousel() {
-    blogCarousel.innerHTML = blogs.map(blog => `
-        <div class="w-full flex-shrink-0 md:w-1/3 px-4">
-            <div class="relative group">
-                <img src="${blog.image}" alt="${blog.title}" class="w-full h-60 object-cover rounded-lg shadow-md" />
-                <div class="absolute inset-0 bg-black bg-opacity-50 flex items-center justify-center text-white text-lg opacity-0 group-hover:opacity-100 transition-opacity">
-                    <span>&gt;</span>
-                </div>
-            </div>
-            <div class="text-left mt-4">
-                <span class="text-green-600">${blog.date}</span>
-                <h3 class="text-xl font-bold mt-2">${blog.title}</h3>
-                <p class="text-gray-600 mt-2">${blog.description}</p>
-                <a href="${blog.link}" class="text-blue-500 mt-2 inline-block">LIRE LA SUITE</a>
-            </div>
-        </div>
-    `).join('');
-    blogCarousel.style.transform = `translateX(-${current * 100}%)`;
-}
+    // Ajout d'un gestionnaire d'événements de clic pour les options de monnaie
+    currencyDropdown.querySelectorAll('.dropdown-content a').forEach(option => {
+        option.addEventListener('click', function(event) {
+            event.preventDefault();
+            updateButtonText(currencyDropdown.querySelector('.dropbtn'), option);
+        });
+    });
 
-prevBtn.addEventListener('click', () => {
-    current = current === 0 ? blogs.length - 1 : current - 1;
-    updateCarousel();
+    // Fonction pour afficher les produits en fonction de l'onglet sélectionné
+    function openTab(evt, tabName) {
+        var i, tabcontent, tablinks;
+        tabcontent = document.getElementsByClassName("tab-content");
+        for (i = 0; i < tabcontent.length; i++) {
+            tabcontent[i].style.display = "none";
+            tabcontent[i].classList.remove("active");
+        }
+        tablinks = document.getElementsByClassName("tab-button");
+        for (i = 0; i < tablinks.length; i++) {
+            tablinks[i].classList.remove("active");
+        }
+        document.getElementById(tabName).style.display = "flex";
+        document.getElementById(tabName).classList.add("active");
+        evt.currentTarget.classList.add("active");
+    }
+
+    // Par défaut, afficher le premier onglet
+    document.getElementById("medicaments").style.display = "flex";
+    document.getElementById("medicaments").classList.add("active");
+
+    // Attacher les gestionnaires d'événements aux boutons d'onglets
+    const tabButtons = document.querySelectorAll('.tab-button');
+    tabButtons.forEach(button => {
+        button.addEventListener('click', function(event) {
+            const tabName = button.getAttribute('data-tab');
+            openTab(event, tabName);
+        });
+    });
+});
+document.addEventListener('DOMContentLoaded', function() {
+    const productCategories = document.querySelectorAll('.product-category');
+
+    // Masquer tous les produits sauf les premiers 7
+    for (let i = 7; i < productCategories.length; i++) {
+        productCategories[i].style.display = 'none';
+    }
+
+    // Bouton pour afficher plus de produits
+    const showMoreButton = document.createElement('button');
+    showMoreButton.textContent = 'Voir plus de produits';
+    showMoreButton.classList.add('show-more-button');
+    document.querySelector('.product-section').appendChild(showMoreButton);
+
+    showMoreButton.addEventListener('click', function() {
+        for (let i = 7; i < productCategories.length; i++) {
+            if (productCategories[i].style.display === 'none') {
+                productCategories[i].style.display = 'block';
+            }
+        }
+        showMoreButton.style.display = 'none'; // Cacher le bouton après affichage complet
+    });
 });
 
-nextBtn.addEventListener('click', () => {
-    current = current === blogs.length - 1 ? 0 : current + 1;
-    updateCarousel();
+//NOUVEAU CODE
+$(document).ready(function() {
+    $('.flexslider').flexslider({
+        animation: "slide",  // Animation "slide"
+        controlNav: true,    // Affiche les points de navigation
+        directionNav: true,  // Affiche les flèches de navigation
+        pauseOnHover: true   // Met en pause le slider quand la souris est dessus
+    });
+
+    // Fonctionnalité des onglets
+    $('.tab-button').on('click', function() {
+        var tabId = $(this).data('tab');  // Récupère l'ID de l'onglet à activer
+        $('.tab-button').removeClass('active');  // Supprime la classe active de tous les boutons
+        $('.tab-content').removeClass('active');  // Masque tous les contenus
+        $(this).addClass('active');  // Ajoute la classe active au bouton cliqué
+        $('#' + tabId).addClass('active');  // Affiche le contenu de l'onglet cliqué
+    });
 });
-
-updateCarousel();
-
-// Brands Grid JavaScript
-const brands = [
-    { src: 'images/a.jpeg', alt: 'AXS Health' },
-    { src: 'images/b.jpeg', alt: 'BioZen Medical' },
-    { src: 'images/c.jpeg', alt: 'Consure Medical' },
-    { src: 'images/d.jpeg', alt: 'Healthcare' },
-    { src: 'images/e.jpeg', alt: 'LifeOmic' },
-    { src: 'images/f.jpeg', alt: 'Matrix Medical Network' },
-    { src: 'images/g.jpeg', alt: 'Medical-X' },
-    { src: 'images/h.jpeg', alt: 'PageMed' },
-    { src: 'images/i.jpeg', alt: 'Primacy Medical Centre' },
-    { src: 'images/j.jpeg', alt: 'Stomach Care' }
-];
-
-const brandsGrid = document.querySelector('.grid');
-brandsGrid.innerHTML = brands.map(brand => `
-    <div class="flex justify-center">
-        <img src="${brand.src}" alt="${brand.alt}" class="brand-logo" />
-    </div>
-`).join('');
-
-document.addEventListener('DOMContentLoaded', () => {
-    const drawerToggleBtn = document.querySelector('.drawer-toggle-btn');
-    const drawerNav = document.querySelector('.drawer-nav');
-    const drawerOverlay = document.querySelector('.drawer-overlay');
-    const submenuToggleBtn = document.querySelector('.submenu-toggle-btn');
-    const submenu = document.querySelector('.submenu');
-  
-    drawerToggleBtn.addEventListener('click', () => {
-      drawerNav.classList.toggle('open');
-      drawerOverlay.classList.toggle('open');
-    });
-  
-    drawerOverlay.addEventListener('click', () => {
-      drawerNav.classList.remove('open');
-      drawerOverlay.classList.remove('open');
-    });
-  
-    submenuToggleBtn.addEventListener('click', () => {
-      submenu.classList.toggle('open');
-    });
-  });
-  

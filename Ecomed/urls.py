@@ -46,4 +46,5 @@ urlpatterns = [
     path('client/checkout/', checkout_view, name='checkout'),
 ]
 
-
+if settings.DEBUG:
+    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

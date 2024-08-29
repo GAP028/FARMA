@@ -1,16 +1,20 @@
 document.addEventListener('DOMContentLoaded', function () {
-    document.querySelectorAll('.toggle-password').forEach(icon => {
-        icon.addEventListener('click', function () {
-            const targetId = this.getAttribute('data-target');
-            const passwordField = document.getElementById(targetId);
+    const togglePasswordIcons = document.querySelectorAll('.toggle-password');
 
-            if (passwordField) {
-                const type = passwordField.getAttribute('type') === 'password' ? 'text' : 'password';
-                passwordField.setAttribute('type', type);
-                this.classList.toggle('fa-eye');
-                this.classList.toggle('fa-eye-slash');
+    togglePasswordIcons.forEach(function(icon) {
+        icon.addEventListener('click', function() {
+            const targetInput = document.querySelector(`#${this.getAttribute('data-target')}`);
+            const inputType = targetInput.getAttribute('type');
+
+            // Toggle the password visibility
+            if (inputType === 'password') {
+                targetInput.setAttribute('type', 'text');
+                this.classList.remove('fa-eye');
+                this.classList.add('fa-eye-slash');
             } else {
-                console.error(`Champ de mot de passe non trouvé pour l'ID : ${targetId}`);
+                targetInput.setAttribute('type', 'password');
+                this.classList.remove('fa-eye-slash');
+                this.classList.add('fa-eye');
             }
         });
     });
